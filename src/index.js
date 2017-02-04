@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
-import axios from 'axios';
+import { Search } from './search';
 
-const ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
 const API_KEY = process.env.API_KEY;
+
+let youTube = new Search (API_KEY);
 
 let params = {
   part: 'snippet',
-  key: API_KEY,
   q: 'dogs'
 };
 
-axios.get('https://www.googleapis.com/youtube/v3/search', { params })
-  .then((res) => { console.log(res); })
-  .catch((err) => { console.log(err); })
+youTube.search(params)
+  .then(results => { console.log(results); });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      videos: []
+    };
+  }
+
   render() {
     return (
       <div>
