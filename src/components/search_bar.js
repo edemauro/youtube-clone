@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { term: 'form' };
-  }
-  render() {
-    return (
-      <div>
-        <input 
-          value = { this.state.term }
-          onChange={ event => this.setState({ term: event.target.value }) } />
-       
-      </div>
-    )
-  }
+const SearchBar = (props) => {
+  return (
+    <div className="col-sm-8">
+      <input
+        onChange={ event => props.onChange(event.target.value) } />
+    </div>
+  );
 }
 
 export default SearchBar;

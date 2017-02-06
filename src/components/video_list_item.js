@@ -1,16 +1,15 @@
 import React from 'react';
 
-const VideoListItem = ({video}) => {
-  console.log(video); 
+const VideoListItem = ({video, onClick}) => { 
   return (
-    <li className="list-group-item">
+    <li 
+      className="list-group-item"
+      onClick={() => onClick(video)}
+    >
       <img src={video.snippet.thumbnails.default.url} />
       <h3>
         {video.snippet.title}
       </h3>
-      <div>
-        {video.snippet.description}
-      </div>
     </li>
   );
 }

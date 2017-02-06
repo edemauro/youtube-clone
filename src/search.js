@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-export class Search {
+class Search {
   constructor(key) {
     this.key = key;
     if(!key) {
@@ -17,3 +17,5 @@ export class Search {
       .catch((err) => { console.log(err); })
   }
 }
+
+export default Search
