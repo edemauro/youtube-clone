@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import CommentList from './components/comment_list';
 import Youtube from './youtube';
 
 const API_KEY = process.env.API_KEY;
@@ -38,13 +39,18 @@ class App extends Component {
           videos: results,
           currentVideo: results[0]
         });
-      });
+
+        return results[0];
+      })
+      .then(result => {
+        return this.getComments(result.id.videoId);
+      })
   };
 
   getComments = (videoId) => {
     YouTube.getComments(videoId)
       .then(results => {
-        console.log(results);
+        this.setState({ comments: results });
       });
   }
 
@@ -58,6 +64,9 @@ class App extends Component {
         <VideoList 
           videos={this.state.videos}
           onClick={this.handleClick}
+        />
+        <CommentList
+          comments={this.state.comments}
         />
       </div>
     );

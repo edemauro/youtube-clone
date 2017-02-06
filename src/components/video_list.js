@@ -3,7 +3,7 @@ import VideoListItem from './video_list_item'
 
 const VideoList = (props) => {
   const videoListItems = props.videos.map((video) => {
-    return <VideoListItem 
+    return <VideoListItem
       key={video.etag}
       video={video}
       onClick={props.onClick}
