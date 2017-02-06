@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-import Search from './search';
+import Youtube from './youtube';
 
 const API_KEY = process.env.API_KEY;
 const DEFAULT_QUERY = 'dogs';
-const YouTube = new Search(API_KEY);
+const YouTube = new Youtube(API_KEY);
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +15,8 @@ class App extends Component {
 
     this.state = { 
       videos: [],
-      currentVideo: null
+      currentVideo: null,
+      comments: []
     };
 
     this.performSearch(DEFAULT_QUERY);
@@ -23,6 +24,7 @@ class App extends Component {
 
   handleClick = (currentVideo) => {
     this.setState({currentVideo});
+    this.getComments(currentVideo.id.videoId);
   }
 
   handleSearch = (query) => {
@@ -30,15 +32,21 @@ class App extends Component {
   }
 
   performSearch = (query) => {
-    YouTube.search(query)
+    YouTube.getVideos(query)
       .then(results => { 
-        console.log(results);
         this.setState({ 
           videos: results,
           currentVideo: results[0]
-        }); 
+        });
       });
   };
+
+  getComments = (videoId) => {
+    YouTube.getComments(videoId)
+      .then(results => {
+        console.log(results);
+      });
+  }
 
   render() {
     return (
