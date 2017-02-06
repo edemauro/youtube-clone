@@ -17,6 +17,12 @@ body {
   padding: 15px;
 }
 
+.comments {
+  margin-top: 20px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+}
+
 .media-list {
   background: #fff;
   padding: 10px;

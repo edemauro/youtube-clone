@@ -10,7 +10,7 @@ const CommentList = (props) => {
   });
 
   return (
-    <ul className="col-sm-8 comments">
+    <ul className="comments">
       {commentListItems}
     </ul>
   );

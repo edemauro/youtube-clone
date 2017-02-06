@@ -60,14 +60,18 @@ class App extends Component {
         <SearchBar
           onClick={this.handleSearch}
         />
-        <VideoDetail video={this.state.currentVideo} />
-        <VideoList 
-          videos={this.state.videos}
-          onClick={this.handleClick}
-        />
-        <CommentList
-          comments={this.state.comments}
-        />
+        <div className="col-sm-8">
+          <VideoDetail video={this.state.currentVideo} />
+          <CommentList
+            comments={this.state.comments}
+          />
+        </div>
+        <div className="col-sm-4">
+          <VideoList 
+            videos={this.state.videos}
+            onClick={this.handleClick}
+          />
+        </div>
       </div>
     );
   }
