@@ -32,6 +32,7 @@ class App extends Component {
   performSearch = (query) => {
     YouTube.search(query)
       .then(results => { 
+        console.log(results);
         this.setState({ 
           videos: results,
           currentVideo: results[0]
