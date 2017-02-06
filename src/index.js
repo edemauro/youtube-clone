@@ -6,14 +6,8 @@ import VideoDetail from './components/video_detail';
 import Search from './search';
 
 const API_KEY = process.env.API_KEY;
-const DEFAULT_PART = 'snippet';
 const DEFAULT_QUERY = 'dogs';
 const YouTube = new Search(API_KEY);
-
-let params = {
-  part: DEFAULT_PART,
-  q: DEFAULT_QUERY
-};
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +18,7 @@ class App extends Component {
       currentVideo: null
     };
 
-    this.performSearch(params);
+    this.performSearch(DEFAULT_QUERY);
   }
 
   handleClick = (currentVideo) => {
@@ -32,12 +26,11 @@ class App extends Component {
   }
 
   handleSearch = (query) => {
-    params.q = query;
-    this.performSearch(params);
+    this.performSearch(query);
   }
 
-  performSearch = (params) => {
-    YouTube.search(params)
+  performSearch = (query) => {
+    YouTube.search(query)
       .then(results => { 
         this.setState({ 
           videos: results,

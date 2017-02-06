@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
+const DEFAULT_PART = 'snippet';
 
 class Search {
   constructor(key) {
@@ -10,8 +11,11 @@ class Search {
     }
   }
 
-  search(params) {
+  search(query) {
+    let params = {};
     params.key = this.key;
+    params.part = DEFAULT_PART;
+    params.q = query;
     return axios.get(ROOT_URL, { params })
       .then((res) => { return res.data.items; })
       .catch((err) => { console.log(err); })
