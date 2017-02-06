@@ -3,13 +3,19 @@ import React from 'react';
 const VideoListItem = ({video, onClick}) => { 
   return (
     <li 
-      className="list-group-item"
+      className="media"
       onClick={() => onClick(video)}
     >
-      <img src={video.snippet.thumbnails.default.url} />
-      <h3>
-        {video.snippet.title}
-      </h3>
+      <div className="media-left">
+        <img src={video.snippet.thumbnails.default.url} />
+      </div>
+      <div className="media-body">
+        <div className="media-body">
+          <h5 className="media-heading">
+            {video.snippet.title}
+          </h5>
+        </div>
+      </div>
     </li>
   );
 }

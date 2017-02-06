@@ -1,0 +1,16 @@
+#search-bar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.video-details {
+  margin-top: 20px;
+}
+
+.media {
+  cursor: pointer;
+}
+
+.media:hover {
+  background-color: #eee;
+}
