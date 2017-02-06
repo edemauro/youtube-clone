@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar
-          onChange={this.handleSearch}
+          onClick={this.handleSearch}
         />
         <VideoDetail video={this.state.currentVideo} />
         <VideoList 
