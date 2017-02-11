@@ -19,7 +19,9 @@ class App extends Component {
       currentVideo: null,
       comments: []
     };
+  }
 
+  componentDidMount() {
     this.performSearch(DEFAULT_QUERY);
   }
 
