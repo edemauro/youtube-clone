@@ -60,7 +60,7 @@ class App extends Component {
     return (
       <div className="row">
         <SearchBar
-          onClick={this.handleSearch}
+          handleSearch={this.handleSearch}
         />
         <div className="col-sm-8">
           <VideoDetail video={this.state.currentVideo} />
