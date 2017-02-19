@@ -31,7 +31,7 @@ function setVideos(videos) {
   };
 }
 
-function setCurrentVideo(video) {
+export function setCurrentVideo(video) {
   return {
     type: SET_CURRENT_VIDEO,
     video
@@ -45,7 +45,16 @@ function setComments(comments) {
   };
 }
 
-export function fetchComments(dispatch, videoId) {
+export function fetchAsyncComments(videoId) {
+  return dispatch => {
+    return YouTube.getComments(videoId)
+      .then(results => {
+        dispatch(setComments(results));
+      });
+  }
+}
+
+function fetchComments(dispatch, videoId) {
   return YouTube.getComments(videoId)
     .then(results => {
       dispatch(setComments(results));

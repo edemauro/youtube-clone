@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import SearchBar from './search_bar';
-import VideoList from './video_list';
-import VideoDetail from './video_detail';
+import VideoListContainer from '../containers/VideoListContainer';
+import VideoDetailContainer from '../containers/videoDetailContainer';
 import CommentList from './comment_list';
 import Youtube from '../youtube';
+import { connect } from 'react-redux';
+import { fetchVideos } from '../actions';
 
 const API_KEY = process.env.API_KEY;
 const DEFAULT_QUERY = 'dogs';
 const YouTube = new Youtube(API_KEY);
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = { 
-      videos: [],
-      currentVideo: null,
       comments: []
     };
   }
 
   componentDidMount() {
+    const { dispatch, searchTerm } = this.props;
+    dispatch(fetchVideos(searchTerm));
     this.performSearch(DEFAULT_QUERY);
   }
 
@@ -62,18 +64,23 @@ export default class App extends Component {
           handleSearch={this.handleSearch}
         />
         <div className="col-sm-8">
-          <VideoDetail video={this.state.currentVideo} />
+          <VideoDetailContainer />
           <CommentList
             comments={this.state.comments}
           />
         </div>
         <div className="col-sm-4">
-          <VideoList 
-            videos={this.state.videos}
-            onClick={this.handleClick}
-          />
+          <VideoListContainer />
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    searchTerm: state.searchTerm
+  };
+}
+
+export default connect(mapStateToProps)(App);

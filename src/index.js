@@ -13,8 +13,6 @@ const loggerMiddleware = createLogger();
 
 let store = createStore(rootReducer, applyMiddleware(thunk, loggerMiddleware));
 
-store.dispatch(fetchVideos(store.getState().searchTerm));
-
 ReactDOM.render(
   <Provider store={store} >
     <App />
