@@ -45,20 +45,13 @@ function setComments(comments) {
   };
 }
 
-export function fetchAsyncComments(videoId) {
+export function fetchComments(videoId) {
   return dispatch => {
     return YouTube.getComments(videoId)
       .then(results => {
         dispatch(setComments(results));
       });
   }
-}
-
-function fetchComments(dispatch, videoId) {
-  return YouTube.getComments(videoId)
-    .then(results => {
-      dispatch(setComments(results));
-    });
 }
 
 export function fetchVideos(term) {
@@ -73,7 +66,7 @@ export function fetchVideos(term) {
         return results[0].id.videoId;
       })
       .then(videoId => {
-        fetchComments(dispatch, videoId);
+        return dispatch(fetchComments(videoId));
       });
   }
 }

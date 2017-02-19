@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import VideoList from '../components/videoList';
-import { setCurrentVideo, fetchAsyncComments } from '../actions';
+import { setCurrentVideo, fetchComments } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (video) => {
       dispatch(setCurrentVideo(video));
-      dispatch(fetchAsyncComments(video.id.videoId));
+      dispatch(fetchComments(video.id.videoId));
     }
   };
 }
