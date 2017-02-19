@@ -1,63 +1,21 @@
 import React, { Component } from 'react';
-import SearchBar from './search_bar';
+import SearchBar from './searchBar';
 import VideoListContainer from '../containers/VideoListContainer';
 import VideoDetailContainer from '../containers/videoDetailContainer';
 import CommentListContainer from '../containers/commentListContainer';
-import Youtube from '../youtube';
 import { connect } from 'react-redux';
 import { fetchVideos } from '../actions';
 
-const API_KEY = process.env.API_KEY;
-const DEFAULT_QUERY = 'dogs';
-const YouTube = new Youtube(API_KEY);
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { 
-      comments: []
-    };
-  }
-
   componentDidMount() {
     const { dispatch, searchTerm } = this.props;
     dispatch(fetchVideos(searchTerm));
-    this.performSearch(DEFAULT_QUERY);
-  }
-
-  handleSearch = (query) => {
-    this.performSearch(query);
-  }
-
-  performSearch = (query) => {
-    YouTube.getVideos(query)
-      .then(results => { 
-        this.setState({ 
-          videos: results,
-          currentVideo: results[0]
-        });
-
-        return results[0];
-      })
-      .then(result => {
-        return this.getComments(result.id.videoId);
-      })
-  };
-
-  getComments = (videoId) => {
-    YouTube.getComments(videoId)
-      .then(results => {
-        this.setState({ comments: results });
-      });
   }
 
   render() {
     return (
       <div className="row">
-        <SearchBar
-          handleSearch={this.handleSearch}
-        />
+        <SearchBar />
         <div className="col-sm-8">
           <VideoDetailContainer />
           <CommentListContainer />
