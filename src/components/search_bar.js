@@ -24,7 +24,7 @@ class SearchBar extends Component {
           <input
             className="form-control"
             value={this.state.term}
-            onChange={ event => this.setState({ term: event.target.value })}
+            onChange={ event => this.setState({ term: event.target.value }) }
           />
           <span className="input-group-btn">
             <button 
