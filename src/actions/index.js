@@ -8,6 +8,7 @@ export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_VIDEOS = 'SET_VIDEOS';
 export const SET_CURRENT_VIDEO = 'SET_CURRENT_VIDEO';
+export const SET_COMMENTS = 'SET_COMMENTS';
 
 export function setSearchTerm(term) {
   return {
@@ -30,12 +31,40 @@ function setVideos(videos) {
   };
 }
 
+function setCurrentVideo(video) {
+  return {
+    type: SET_CURRENT_VIDEO,
+    video
+  };
+}
+
+function setComments(comments) {
+  return {
+    type: SET_COMMENTS,
+    comments
+  };
+}
+
+export function fetchComments(dispatch, videoId) {
+  return YouTube.getComments(videoId)
+    .then(results => {
+      dispatch(setComments(results));
+    });
+}
+
 export function fetchVideos(term) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(setSearchTerm(term));
     dispatch(setIsLoading(true));
 
     return YouTube.getVideos(term)
-      .then(results => dispatch(setVideos(results)));
+      .then(results => {
+        dispatch(setVideos(results));
+        dispatch(setCurrentVideo(results[0]));
+        return results[0].id.videoId;
+      })
+      .then(videoId => {
+        fetchComments(dispatch, videoId);
+      });
   }
 }

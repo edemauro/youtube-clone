@@ -7,15 +7,14 @@ import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
 import App from './components/app';
 
-import { fetchVideos, setSearchTerm } from './actions';
+import { fetchVideos } from './actions';
 
 const loggerMiddleware = createLogger();
 
 let store = createStore(rootReducer, applyMiddleware(thunk, loggerMiddleware));
 
-store.dispatch(fetchVideos(store.getState().searchTerm))
-  .then(() => { console.log(store.getState())});
-  
+store.dispatch(fetchVideos(store.getState().searchTerm));
+
 ReactDOM.render(
   <Provider store={store} >
     <App />
