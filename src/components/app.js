@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './search_bar';
 import VideoListContainer from '../containers/VideoListContainer';
 import VideoDetailContainer from '../containers/videoDetailContainer';
-import CommentList from './comment_list';
+import CommentListContainer from '../containers/commentListContainer';
 import Youtube from '../youtube';
 import { connect } from 'react-redux';
 import { fetchVideos } from '../actions';
@@ -24,11 +24,6 @@ class App extends Component {
     const { dispatch, searchTerm } = this.props;
     dispatch(fetchVideos(searchTerm));
     this.performSearch(DEFAULT_QUERY);
-  }
-
-  handleClick = (currentVideo) => {
-    this.setState({currentVideo});
-    this.getComments(currentVideo.id.videoId);
   }
 
   handleSearch = (query) => {
@@ -65,9 +60,7 @@ class App extends Component {
         />
         <div className="col-sm-8">
           <VideoDetailContainer />
-          <CommentList
-            comments={this.state.comments}
-          />
+          <CommentListContainer />
         </div>
         <div className="col-sm-4">
           <VideoListContainer />

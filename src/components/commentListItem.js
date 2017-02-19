@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommentListItem = ({comment}) => {
+const CommentListItem = ({ comment }) => {
   const topLevelComment = comment.snippet.topLevelComment.snippet;
 
   return (
