@@ -17,14 +17,14 @@ export function setSearchTerm(term) {
   };
 }
 
-function setIsLoading(isLoading) {
+export function setIsLoading(isLoading) {
   return {
     type: SET_LOADING,
     isLoading
   };
 }
 
-function setVideos(videos) {
+export function setVideos(videos) {
   return {
     type: SET_VIDEOS,
     videos
@@ -38,7 +38,7 @@ export function setCurrentVideo(video) {
   };
 }
 
-function setComments(comments) {
+export function setComments(comments) {
   return {
     type: SET_COMMENTS,
     comments
