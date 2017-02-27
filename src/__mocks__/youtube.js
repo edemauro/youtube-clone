@@ -7,22 +7,11 @@ function __setMockData(newMockData) {
 
 class Youtube {
   getVideos(term) {
-    return Promise.resolve([
-      {
-        id: {
-          videoId: "2J5GzHoKl1Q"
-        }
-      }
-    ]);
+    return Promise.resolve(mockData.videos);
   }
 
   getComments(videoId) {
-    return Promise.resolve([
-      {
-        id: "z12hd1sx3yikw5kvn22ce1erikb1vvbx004",
-        kind: "youtube#commentThread"
-      }
-    ]);
+    return Promise.resolve(mockData.comments);
   }
 }
 

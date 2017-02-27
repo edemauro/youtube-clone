@@ -20,14 +20,14 @@ describe('actions', () => {
 
 describe('async actions', () => {
   const MOCK_DATA = {
-    mockVideos: [
+    videos: [
       {
         id: {
           videoId: "2J5GzHoKl1Q"
         }
       }
     ],
-    mockComments: [
+    comments: [
       {
         id: "z12hd1sx3yikw5kvn22ce1erikb1vvbx004",
         kind: "youtube#commentThread"
@@ -45,9 +45,9 @@ describe('async actions', () => {
     const expectedActions = [
       { type: actions.SET_SEARCH_TERM, term },
       { type: actions.SET_LOADING, isLoading: true },
-      { type: actions.SET_VIDEOS, videos: MOCK_DATA.mockVideos },
-      { type: actions.SET_CURRENT_VIDEO, video: MOCK_DATA.mockVideos[0] },
-      { type: actions.SET_COMMENTS, comments: MOCK_DATA.mockComments }
+      { type: actions.SET_VIDEOS, videos: MOCK_DATA.videos },
+      { type: actions.SET_CURRENT_VIDEO, video: MOCK_DATA.videos[0] },
+      { type: actions.SET_COMMENTS, comments: MOCK_DATA.comments }
     ];
     const store = mockStore({});
 
