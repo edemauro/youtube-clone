@@ -7,7 +7,7 @@ let SearchBar = ({ dispatch }) => {
 
   return (
     <form 
-      className="col-sm-10 col-sm-push-1"
+      className="col-sm-12"
       onSubmit={e => {
         e.preventDefault();
         if(!input.value.trim()) {
