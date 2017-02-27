@@ -19,27 +19,35 @@ describe('actions', () => {
 });
 
 describe('async actions', () => {
-  it('creates SET_VIDEOS when fetching videos has been done', () => {
-    const term = 'dog';
-    const mockVideo = {
-      id: {
+  const MOCK_DATA = {
+    mockVideos: [
+      {
+        id: {
           videoId: "2J5GzHoKl1Q"
         }
-    };
-    const mockComment = {
-      id: "z12hd1sx3yikw5kvn22ce1erikb1vvbx004",
-      kind: "youtube#commentThread"
-    };
+      }
+    ],
+    mockComments: [
+      {
+        id: "z12hd1sx3yikw5kvn22ce1erikb1vvbx004",
+        kind: "youtube#commentThread"
+      }
+    ]
+  };
 
-    const mockVideos = [ mockVideo ];
-    const mockComments = [ mockComment ];
+  beforeEach(() => {
+    require('../../src/youtube').__setMockData(MOCK_DATA);
+  });
+
+  it('creates SET_VIDEOS when fetching videos has been done', () => {
+    const term = 'dog';
 
     const expectedActions = [
       { type: actions.SET_SEARCH_TERM, term },
       { type: actions.SET_LOADING, isLoading: true },
-      { type: actions.SET_VIDEOS, videos: mockVideos },
-      { type: actions.SET_CURRENT_VIDEO, video: mockVideo },
-      { type: actions.SET_COMMENTS, comments: mockComments }
+      { type: actions.SET_VIDEOS, videos: MOCK_DATA.mockVideos },
+      { type: actions.SET_CURRENT_VIDEO, video: MOCK_DATA.mockVideos[0] },
+      { type: actions.SET_COMMENTS, comments: MOCK_DATA.mockComments }
     ];
     const store = mockStore({});
 

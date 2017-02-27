@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+let mockData;
+function __setMockData(newMockData) {
+  mockData = newMockData;
+}
+
 class Youtube {
   getVideos(term) {
     return Promise.resolve([
@@ -20,5 +25,7 @@ class Youtube {
     ]);
   }
 }
+
+Youtube.__setMockData = __setMockData;
 
 module.exports = Youtube;
