@@ -6,10 +6,18 @@
 $ npm install
 ```
 
-* Create a .env file. See the following example below.
+* Create a .env file with your api key.
 
 ```bash
 API_KEY=SECRITAPIKEY
+```
+
+## Running
+
+Run your application using npm:
+
+```bash
+$ npm start
 ```
 
 ## TODO
