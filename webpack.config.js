@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 require('dotenv').config();
 
 module.exports = {

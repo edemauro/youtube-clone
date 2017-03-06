@@ -16,11 +16,13 @@ class App extends Component {
     return (
       <div className="row">
         <SearchBar />
-        <div className="col-sm-8">
+        <div className="col-sm-12">
           <VideoDetailContainer />
+        </div>
+        <div className="col-sm-6">
           <CommentListContainer />
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-6">
           <VideoListContainer />
         </div>
       </div>
