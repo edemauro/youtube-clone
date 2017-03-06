@@ -24,3 +24,4 @@ $ npm start
 
 * Switch to create-react-app OR add some build scripts.
 * Add a .env example.
+* Fix HTML in comments.
