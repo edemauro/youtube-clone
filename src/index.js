@@ -9,9 +9,16 @@ import App from './components/app';
 
 import { fetchVideos } from './actions';
 
-const loggerMiddleware = createLogger();
+let middleware = [ thunk ]
 
-let store = createStore(rootReducer, applyMiddleware(thunk, loggerMiddleware));
+if(process.env.NODE_ENV !== 'production') {
+  const loggerMiddleware = createLogger();
+  middleware = [ ...middleware, loggerMiddleware ];
+}
+
+console.log(process.env.NODE_ENV);
+
+let store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store} >
