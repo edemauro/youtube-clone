@@ -50,6 +50,7 @@ export function fetchComments(videoId) {
     return YouTube.getComments(videoId)
       .then(results => {
         dispatch(setComments(results));
+        dispatch(setIsLoading(false));
       });
   }
 }
