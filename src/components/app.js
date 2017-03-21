@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoadingPage from './loadingPage';
 import SearchBar from './searchBar';
 import VideoListContainer from '../containers/VideoListContainer';
 import VideoDetailContainer from '../containers/videoDetailContainer';
@@ -13,6 +14,10 @@ class App extends Component {
   }
 
   render() {
+    // Consider switching to inline if-else
+    if( this.props.isLoading ) {
+      return <LoadingPage />;
+    }
     return (
       <div className="row">
         <SearchBar />
@@ -32,7 +37,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.searchTerm,
+    isLoading: state.isLoading
   };
 }
 

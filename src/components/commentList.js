@@ -3,7 +3,7 @@ import CommentListItem from './commentListItem'
 
 const CommentList = ({ comments }) => {
   if(!comments) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   const commentListItems = comments.map((comment) => {

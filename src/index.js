@@ -16,8 +16,6 @@ if(process.env.NODE_ENV !== 'production') {
   middleware = [ ...middleware, loggerMiddleware ];
 }
 
-console.log(process.env.NODE_ENV);
-
 let store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
