@@ -3,6 +3,8 @@
 bundle.js
 npm-debug.log
 
+deploy.txt
+
 # IntelliJ
 *.iml
 /.idea
