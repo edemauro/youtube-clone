@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchVideos } from '../actions';
 
-let SearchBar = ({ dispatch }) => {
+const SearchBar = ({ dispatch }) => {
   let input;
 
   return (
@@ -38,6 +38,4 @@ let SearchBar = ({ dispatch }) => {
   );
 }
 
-SearchBar = connect()(SearchBar);
-
-export default SearchBar;
+export default connect()(SearchBar);
